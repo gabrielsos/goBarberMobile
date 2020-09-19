@@ -20,7 +20,9 @@ import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 
 import {
+  HeaderContainer,
   BackButton,
+  LogoutButton,
   Container,
   Title,
   UserAvatarButton,
@@ -36,7 +38,7 @@ interface ProfileFormData {
 }
 
 const Profile: React.FC = () => {
-  const { updateUser, user } = useAuth();
+  const { updateUser, user, signOut } = useAuth();
   const formRef = useRef<FormHandles>(null);
 
   const emailInputRef = useRef<TextInput>(null);
@@ -157,6 +159,10 @@ const Profile: React.FC = () => {
     navigation.goBack();
   }, [navigation]);
 
+  const handleLogout = useCallback(() => {
+    signOut();
+  }, [signOut]);
+
   return (
     <>
       <KeyboardAvoidingView
@@ -177,9 +183,12 @@ const Profile: React.FC = () => {
               <UserAvatar source={{ uri: user.avatar_url }} />
             </UserAvatarButton>
 
-            <View>
+            <HeaderContainer>
               <Title>Meu perfil</Title>
-            </View>
+              <LogoutButton onPress={handleLogout}>
+                <Icon name="log-out" size={24} color="#999591" />
+              </LogoutButton>
+            </HeaderContainer>
 
             <Form
               ref={formRef}

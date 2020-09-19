@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import { Platform } from 'react-native';
 
 export const Container = styled.ScrollView.attrs({
   flex: 1,
@@ -9,9 +8,18 @@ export const Container = styled.ScrollView.attrs({
   },
 })``;
 
+export const HeaderContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 export const BackButton = styled.TouchableOpacity`
   margin-top: 30px;
 `;
+
+export const LogoutButton = styled.TouchableOpacity``;
 
 export const Title = styled.Text`
   font-size: 20px;
